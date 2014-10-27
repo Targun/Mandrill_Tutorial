@@ -1,7 +1,7 @@
 Mandrill_Tutorial
 =================
 
-Create, Send & Email with Mandrill
+Create, Send & Email with Mandrill with PJ Targun
 
 ###Introduction
 [Mandrill](http://mandrill.com) allows you to send emails from your website or application, and track the results!
@@ -63,6 +63,10 @@ var params = {
     }
 };
 ```
+
+Note: Sometimes you need to wait a few for the email to show up in your inbox.
+
+For resources to set up mandrill on the backend with Node.js, check out [powerdrill](https://github.com/rschmukler/powerdrill)
 
 
 
