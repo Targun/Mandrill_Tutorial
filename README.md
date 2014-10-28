@@ -27,12 +27,9 @@ Finally lets add two more parameters for tracking emails:
 
 Looking at the offical Mandrill API, you can see that to send a message, you'd use **messsages.send**.  So change "ManDrill_Method_Here" to messages.send
 
-###Customize email content
-You can use merge tags to customize the email for the recipient.  Merge tags in Mandrill take the form of __*|MERGENAME|*__ where "MERGENAME" is the name of the merge tag.  
-
-Let's now head over to the html and add a couple of merge tags, so you can have content like - hey *|FRIEND|*, we've been friends for *|YEARS|* years. Now that your content has merge tags, you can provide some specifics in the API call, using the **erge_vars** and **global_merge_vars** parameters. The **global_merge_vars** parameter lets you specify some default values in the event that a recipient doesn't have recipient-specific information.
-
-For the message, add a **merge_vars** parameter. This parameter takes an array, with each item being a recipient. Each recipient has two keys: **rcpt** and **vars** and you'll want to add information for each merge tag in your content.
+###Notes
+You can use [merge tags](http://help.mandrill.com/entries/21678522-How-do-I-use-merge-tags-to-add-dynamic-content-) to customize the email for the recipient.
+You may find that your emails are going into spam. Setting up your [SPF and DKIM](http://help.mandrill.com/entries/21751322-What-are-SPF-and-DKIM-and-do-I-need-to-set-them-up-) should help with that.
 
 In the end, your mandrill params object should look like:
 ```javascript
@@ -44,29 +41,10 @@ var params = {
         "html": "<p>Hey *|COOLFRIEND|*, we've been friends for *|YEARS|*.</p>",
         "autotext": true,
         "track_opens": true,
-        "track_clicks": true,
-        "merge_vars": [
-            {
-                "rcpt": "your_recipient_address",
-                "vars": [
-                    {
-                        "name": "COOLFRIEND",
-                        "content": "Your friend's name"
-                    },
-                    {
-                        "name": "YEARS",
-                        "content": "5 awesome years"
-                    }
-                ]
-            }
-        ]
+        "track_clicks": true
     }
 };
 ```
-
-Note: Sometimes you need to wait a few for the email to show up in your inbox.
-
-For resources to set up mandrill on the backend with Node.js, check out [powerdrill](https://github.com/rschmukler/powerdrill)
 
 
 
